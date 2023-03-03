@@ -1,0 +1,53 @@
+{
+    "name": "GudangPusat",
+    "alias": "gudangpusat",
+    "label": "Gudang Pusat",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\GudangPusat\\Providers\\GudangPusatServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "admin_menus": [
+        {
+            "icon": "fa fa-bars",
+            "name": "Supplier",
+            "route": "admin/gudang-pusat/supplier",
+            "permission": "view_gudang_pusat-supplier"
+        },
+        {
+            "icon": "fa fa-bars",
+            "name": "Cabang",
+            "route": "admin/gudang-pusat/cabang",
+            "permission": "view_gudang_pusat-cabang"
+        },
+        {
+            "icon": "fa fa-bars",
+            "name": "Outlet",
+            "route": "admin/gudang-pusat/outlet",
+            "permission": "view_gudang_pusat-outlet"
+        },
+        {
+            "icon": "fa fa-bars",
+            "name": "Kategori Barang",
+            "route": "admin/gudang-pusat/kategori-barang",
+            "permission": "view_gudang_pusat-kategori_barang"
+        },
+        {
+            "icon": "fa fa-bars",
+            "name": "Stok Barang",
+            "route": "admin/gudang-pusat/stok-barang",
+            "permission": "view_gudang_pusat-stok_barang"
+        },
+        {
+            "icon": "fa fa-bars",
+            "name": "Permintaan Barang",
+            "route": "admin/gudang-pusat/permintaan-barang",
+            "permission": "view_gudang_pusat-permintaan_barang"
+        }
+    ],
+    "permissions": ["gudang_pusat-supplier", "gudang_pusat-cabang","gudang_pusat-outlet","gudang_pusat-kategori_barang", "gudang_pusat-stok_barang","gudang_pusat-permintaan_barang"]
+}
