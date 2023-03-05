@@ -1,0 +1,41 @@
+{
+    "name": "Outlet",
+    "alias": "outlet",
+    "label":"Outlet",
+    "description": "",
+    "keywords": [],
+    "priority": 3,
+    "providers": [
+        "Modules\\Outlet\\Providers\\OutletServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "admin_menus": [
+        {
+            "icon": "fa fa-minus",
+            "name": "Stok Barang",
+            "route": "admin/outlet/stok-barang",
+            "permission": "view_outlet-stok_barang"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Transaksi",
+            "route": "admin/outlet/transaksi",
+            "permission": "view_outlet-transaksi"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Status Order Barang",
+            "route": "admin/outlet/order-barang",
+            "permission": "view_outlet-order_barang"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Status Retur Barang",
+            "route": "admin/outlet/retur-barang",
+            "permission": "view_outlet-retur_barang"
+        }
+    ],
+    "permissions": ["outlet-stok_barang", "outlet-transaksi","outlet-order_barang","outlet-retur_barang"]
+}

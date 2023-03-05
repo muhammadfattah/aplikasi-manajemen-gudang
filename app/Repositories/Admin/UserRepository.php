@@ -9,6 +9,7 @@ use App\Repositories\Admin\Interfaces\UserRepositoryInterface;
 
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -40,7 +41,7 @@ class UserRepository implements UserRepositoryInterface
         if ($perPage) {
             return $users->paginate($perPage);
         }
-        
+
         return $users->get();
     }
 
@@ -52,9 +53,12 @@ class UserRepository implements UserRepositoryInterface
     public function create($params = [])
     {
         return DB::transaction(function () use ($params) {
+
+            $params['password'] = Hash::make($params['password']);
+
             $user = User::create($params);
             $this->syncRolesAndPermissions($params, $user);
-            
+
             return $user;
         });
     }
@@ -62,15 +66,17 @@ class UserRepository implements UserRepositoryInterface
     public function update($id, $params = [])
     {
         $user = User::findOrFail($id);
-        
+
         if (!$params['password']) {
             unset($params['password']);
+        } else {
+            $params['password'] = Hash::make($params['password']);
         }
 
         return DB::transaction(function () use ($params, $user) {
             $user->update($params);
             $this->syncRolesAndPermissions($params, $user);
-            
+
             return $user;
         });
     }
@@ -81,7 +87,7 @@ class UserRepository implements UserRepositoryInterface
 
         return $user->delete();
     }
-    
+
     /**
      * Sync roles and permissions
      *

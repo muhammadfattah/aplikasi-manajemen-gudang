@@ -2,6 +2,7 @@
 
 namespace Modules\GudangPusat\Repositories\Admin;
 
+use App\Models\Role;
 use App\Models\User;
 use Facades\Str;
 use DB;
@@ -115,7 +116,7 @@ class CabangRepository implements CabangRepositoryInterface
     public function getListManajerCabang()
     {
         $manajerCabang = (new User())->whereHas('roles', function ($query) {
-            $query->where('name', 'Manajer Cabang');
+            $query->where('name', Role::MANAJERCABANG);
         })->get();
 
         $list = [];
@@ -128,7 +129,7 @@ class CabangRepository implements CabangRepositoryInterface
     public function getListAdminCabang()
     {
         $adminCabang = (new User())->whereHas('roles', function ($query) {
-            $query->where('name', 'Admin Cabang');
+            $query->where('name', Role::ADMINCABANG);
         })->get();
         $list = [];
         foreach ($adminCabang as $a) {

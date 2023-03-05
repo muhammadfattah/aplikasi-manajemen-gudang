@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'manage_kategoris' => 'Manajemen Kategori',
-    'kategori_list' => 'Daftar Kategori',
+    'manage_kategoris' => 'Manajemen Kategori Barang',
+    'kategori_list' => 'Daftar Kategori Barang',
     'name_label' => 'Nama Kategori',
     'action_label' => 'Aksi',
 

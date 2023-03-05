@@ -4,7 +4,7 @@
     "label": "Gudang Pusat",
     "description": "",
     "keywords": [],
-    "priority": 0,
+    "priority": 1,
     "providers": [
         "Modules\\GudangPusat\\Providers\\GudangPusatServiceProvider"
     ],
@@ -13,41 +13,47 @@
     "requires": [],
     "admin_menus": [
         {
-            "icon": "fa fa-bars",
+            "icon": "fa fa-minus",
             "name": "Supplier",
             "route": "admin/gudang-pusat/supplier",
             "permission": "view_gudang_pusat-supplier"
         },
         {
-            "icon": "fa fa-bars",
+            "icon": "fa fa-minus",
             "name": "Cabang",
             "route": "admin/gudang-pusat/cabang",
             "permission": "view_gudang_pusat-cabang"
         },
         {
-            "icon": "fa fa-bars",
+            "icon": "fa fa-minus",
             "name": "Outlet",
             "route": "admin/gudang-pusat/outlet",
             "permission": "view_gudang_pusat-outlet"
         },
         {
-            "icon": "fa fa-bars",
+            "icon": "fa fa-minus",
             "name": "Kategori Barang",
             "route": "admin/gudang-pusat/kategori-barang",
             "permission": "view_gudang_pusat-kategori_barang"
         },
         {
-            "icon": "fa fa-bars",
+            "icon": "fa fa-minus",
             "name": "Stok Barang",
             "route": "admin/gudang-pusat/stok-barang",
             "permission": "view_gudang_pusat-stok_barang"
         },
         {
-            "icon": "fa fa-bars",
-            "name": "Permintaan Barang",
-            "route": "admin/gudang-pusat/permintaan-barang",
-            "permission": "view_gudang_pusat-permintaan_barang"
+            "icon": "fa fa-minus",
+            "name": "Permintaan Order",
+            "route": "admin/gudang-pusat/permintaan-order",
+            "permission": "view_gudang_pusat-permintaan_order"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Permintaan Retur",
+            "route": "admin/gudang-pusat/permintaan-retur",
+            "permission": "view_gudang_pusat-permintaan_retur"
         }
     ],
-    "permissions": ["gudang_pusat-supplier", "gudang_pusat-cabang","gudang_pusat-outlet","gudang_pusat-kategori_barang", "gudang_pusat-stok_barang","gudang_pusat-permintaan_barang"]
+    "permissions": ["gudang_pusat-supplier", "gudang_pusat-cabang","gudang_pusat-outlet","gudang_pusat-kategori_barang", "gudang_pusat-stok_barang","gudang_pusat-permintaan_order","gudang_pusat-permintaan_retur"]
 }

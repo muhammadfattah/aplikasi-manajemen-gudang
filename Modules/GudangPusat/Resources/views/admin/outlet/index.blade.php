@@ -36,7 +36,8 @@
                                                 <td>{{ $outlet->nama }}</td>
                                                 <td>{{ $outlet->supervisor->name }}</td>
                                                 <td>{{ $outlet->lokasi }}</td>
-                                                <td>{{ $outlet->cabang->nama . ' - ' . $outlet->cabang->lokasi }}</td>
+                                                <td>{{ ($outlet->cabang->nama ?? '') . ' - ' . ($outlet->cabang->lokasi ?? '') }}
+                                                </td>
                                                 <td>{{ $outlet->updated_at_formatted }}</td>
                                                 <td>
                                                     @if ($outlet->trashed())

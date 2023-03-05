@@ -34,8 +34,8 @@
                                         @forelse ($cabangs as $cabang)
                                             <tr>
                                                 <td>{{ $cabang->nama }}</td>
-                                                <td>{{ $cabang->manajer->name }}</td>
-                                                <td>{{ $cabang->admin->name }}</td>
+                                                <td>{{ $cabang->manajer->name ?? '-' }}</td>
+                                                <td>{{ $cabang->admin->name ?? '-' }}</td>
                                                 <td>{{ $cabang->lokasi }}</td>
                                                 <td>{{ $cabang->updated_at_formatted }}</td>
                                                 <td>

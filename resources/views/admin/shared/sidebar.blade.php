@@ -3,21 +3,31 @@
 @endphp
 <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-        <a href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+        <a href="{{ url('#') }}">Manajemen Barang</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href="{{ url('/') }}">LS</a>
+        <a href="{{ url('#') }}">LS</a>
     </div>
     <ul class="sidebar-menu">
-        <li class="{{ $currentAdminMenu == 'dashboard' ? $activeClass : '' }}"><a class="nav-link"
-                href="{{ url('admin/dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+        {{-- <li class="{{ $currentAdminMenu == 'dashboard' ? $activeClass : '' }}"><a class="nav-link"
+                href="{{ url('admin/dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li> --}}
         @foreach ($moduleAdminMenus as $moduleAdminMenu)
-            <li class="menu-header">{{ $moduleAdminMenu['label'] }}</li>
+            @php
+                $check = false;
+            @endphp
+            @foreach ($moduleAdminMenu['admin_menus'] as $moduleMenu)
+                @php
+                    $check = $check || Gate::check($moduleMenu['permission']);
+                @endphp
+            @endforeach
+            @if ($check)
+                <li class="menu-header">{{ $moduleAdminMenu['label'] }}</li>
+            @endif
             @foreach ($moduleAdminMenu['admin_menus'] as $moduleMenu)
                 @can($moduleMenu['permission'])
-                    <li class="{{ $currentAdminMenu == strtolower($moduleMenu['name']) ? $activeClass : '' }}"><a
-                            class="nav-link" href="{{ url($moduleMenu['route']) }}"><i
-                                class="{{ $moduleMenu['icon'] }}"></i> <span>{{ $moduleMenu['name'] }}</span></a></li>
+                    <li class="{{ $moduleMenu['route'] == implode('/', request()->segments()) ? $activeClass : '' }}"><a
+                            class="nav-link" href="{{ url($moduleMenu['route']) }}"><i class="{{ $moduleMenu['icon'] }}"></i>
+                            <span>{{ $moduleMenu['name'] }}</span></a></li>
                 @endcan
             @endforeach
         @endforeach

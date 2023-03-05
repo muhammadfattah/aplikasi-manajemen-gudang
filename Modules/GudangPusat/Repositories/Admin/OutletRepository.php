@@ -2,6 +2,7 @@
 
 namespace Modules\GudangPusat\Repositories\Admin;
 
+use App\Models\Role;
 use App\Models\User;
 use Facades\Str;
 use DB;
@@ -116,7 +117,7 @@ class OutletRepository implements OutletRepositoryInterface
     public function getListSupervisorOutlet()
     {
         $manajerOutlet = (new User())->whereHas('roles', function ($query) {
-            $query->where('name', 'Supervisor Outlet');
+            $query->where('name', Role::SUPERVISOROUTLET);
         })->get();
 
         $list = [];

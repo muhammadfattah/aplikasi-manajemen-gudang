@@ -4,56 +4,45 @@ namespace Modules\GudangPusat\Http\Controllers\Admin;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
-class PermintaanBarangController extends Controller
+use App\Authorizable;
+use Modules\GudangPusat\Http\Controllers\GudangPusatController;
+use Modules\GudangPusat\Repositories\Admin\Interfaces\PermintaanBarangRepositoryInterface;
+
+class PermintaanBarangController extends GudangPusatController
 {
+    // use Authorizable;
+
+    private $permintaanbarangRepository;
+
+    public function __construct(PermintaanBarangRepositoryInterface $permintaanbarangRepository) //phpcs:ignore
+    {
+        parent::__construct();
+        $this->data['currentAdminMenu'] = 'permintaan barang';
+
+        $this->permintaanbarangRepository = $permintaanbarangRepository;
+
+        $this->data['viewTrash'] = false;
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('gudangpusat::index');
-    }
+        $params = $request->all();
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('gudangpusat::create');
-    }
+        $options = [
+            'per_page' => $this->perPage,
+            'permintaan' => [
+                'created_at' => 'desc',
+            ],
+            'filter' => $params,
+        ];
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('gudangpusat::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('gudangpusat::edit');
+        $this->data['permintaanbarangs'] = $this->permintaanbarangRepository->findAll($options);
+        $this->data['filter'] = $params;
+        return view('gudangpusat::admin.permintaanbarang.index', $this->data);
     }
 
     /**
@@ -64,16 +53,19 @@ class PermintaanBarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $status = $request->status;
+        if ($status == '') {
+            return redirect('admin/gudang-pusat/permintaan-order')
+                ->with('error', 'Status permintaan order berhasil diubah');
+        }
+        $barang = $this->permintaanbarangRepository->findById($id);
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        if ($this->permintaanbarangRepository->update($barang, ['status' => $status])) {
+            return redirect('admin/gudang-pusat/permintaan-order')
+                ->with('success', 'Status permintaan order berhasil diubah');
+        }
+
+        return redirect('admin/gudang-pusat/permintaan-order')
+            ->with('error', 'Status permintaan order berhasil diubah');
     }
 }

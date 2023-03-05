@@ -23,7 +23,12 @@ class Role extends SpatieRole
     protected $keyType = 'string';
     public $incrementing = false;
 
-    const ADMIN = 'Admin';
+    public const ADMIN            = 'Admin';
+    public const ADMINPUSAT       = 'Admin Pusat';
+    public const MANAJERPUSAT     = 'Manajer Pusat';
+    public const ADMINCABANG      = 'Admin Cabang';
+    public const MANAJERCABANG    = 'Manajer Cabang';
+    public const SUPERVISOROUTLET = 'Supervisor Outlet';
 
     public function getCreatedAtFormattedAttribute()
     {

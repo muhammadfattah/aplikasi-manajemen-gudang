@@ -1,0 +1,47 @@
+{
+    "name": "GudangCabang",
+    "alias": "gudangcabang",
+    "label":"Gudang Cabang",
+    "description": "",
+    "keywords": [],
+    "priority": 2,
+    "providers": [
+        "Modules\\GudangCabang\\Providers\\GudangCabangServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "admin_menus": [
+        {
+            "icon": "fa fa-minus",
+            "name": "Stok Barang",
+            "route": "admin/gudang-cabang/stok-barang",
+            "permission": "view_gudang_cabang-stok_barang"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Status Order Barang",
+            "route": "admin/gudang-cabang/order-barang",
+            "permission": "view_gudang_cabang-order_barang"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Permintaan Order",
+            "route": "admin/gudang-cabang/permintaan-order",
+            "permission": "view_gudang_cabang-permintaan_order"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Status Retur Barang",
+            "route": "admin/gudang-cabang/retur-barang",
+            "permission": "view_gudang_cabang-retur_barang"
+        },
+        {
+            "icon": "fa fa-minus",
+            "name": "Permintaan Retur",
+            "route": "admin/gudang-cabang/permintaan-retur",
+            "permission": "view_gudang_cabang-permintaan_retur"
+        }
+    ],
+    "permissions": ["gudang_cabang-stok_barang", "gudang_cabang-order_barang","gudang_cabang-permintaan_order","gudang_cabang-retur_barang","gudang_cabang-permintaan_retur"]
+}

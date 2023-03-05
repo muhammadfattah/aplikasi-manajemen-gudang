@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\RoleController as AdminRole;
 use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Admin\SettingController as AdminSetting;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +20,21 @@ use App\Http\Controllers\Admin\SettingController as AdminSetting;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->to('/login');
 });
 
 Route::get('/home', function () {
-    return view('home');
+    if (auth()->user()->hasRole(Role::ADMIN) || auth()->user()->hasRole(Role::MANAJERPUSAT) || auth()->user()->hasRole(Role::ADMINPUSAT)) {
+        return redirect()->to('/admin/gudang-pusat/stok-barang');
+    } else if (auth()->user()->hasRole(Role::MANAJERCABANG) || auth()->user()->hasRole(Role::ADMINCABANG)) {
+        return redirect()->to('/admin/gudang-cabang/stok-barang');
+    } else {
+        return redirect()->to('/admin/outlet/stok-barang');
+    }
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard.index');
+    // Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard.index');
 
     Route::get('roles/reload-permissions/{id}', [AdminRole::class, 'reloadPermissions'])->name('roles.update');
     Route::get('roles/reload-permissions', [AdminRole::class, 'reloadPermissions'])->name('roles.update');

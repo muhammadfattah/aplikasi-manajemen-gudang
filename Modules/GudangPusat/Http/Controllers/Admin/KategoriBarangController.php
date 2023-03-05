@@ -19,7 +19,7 @@ class KategoriBarangController extends GudangPusatController
     public function __construct(KategoriBarangRepositoryInterface $kategoriRepository) //phpcs:ignore
     {
         parent::__construct();
-        $this->data['currentAdminMenu'] = 'kategori';
+        $this->data['currentAdminMenu'] = 'kategori barang';
 
         $this->kategoriRepository = $kategoriRepository;
 

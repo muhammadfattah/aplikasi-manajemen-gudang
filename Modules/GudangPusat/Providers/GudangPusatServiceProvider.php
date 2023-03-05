@@ -8,9 +8,15 @@ use Modules\GudangPusat\Repositories\Admin\CabangRepository;
 use Modules\GudangPusat\Repositories\Admin\Interfaces\CabangRepositoryInterface;
 use Modules\GudangPusat\Repositories\Admin\Interfaces\KategoriBarangRepositoryInterface;
 use Modules\GudangPusat\Repositories\Admin\Interfaces\OutletRepositoryInterface;
+use Modules\GudangPusat\Repositories\Admin\Interfaces\PermintaanBarangRepositoryInterface;
+use Modules\GudangPusat\Repositories\Admin\Interfaces\PermintaanReturRepositoryInterface;
+use Modules\GudangPusat\Repositories\Admin\Interfaces\StokBarangRepositoryInterface;
 use Modules\GudangPusat\Repositories\Admin\Interfaces\SupplierRepositoryInterface;
 use Modules\GudangPusat\Repositories\Admin\KategoriBarangRepository;
 use Modules\GudangPusat\Repositories\Admin\OutletRepository;
+use Modules\GudangPusat\Repositories\Admin\PermintaanBarangRepository;
+use Modules\GudangPusat\Repositories\Admin\PermintaanReturRepository;
+use Modules\GudangPusat\Repositories\Admin\StokBarangRepository;
 use Modules\GudangPusat\Repositories\Admin\SupplierRepository;
 
 class GudangPusatServiceProvider extends ServiceProvider
@@ -140,6 +146,21 @@ class GudangPusatServiceProvider extends ServiceProvider
         $this->app->bind(
             OutletRepositoryInterface::class,
             OutletRepository::class
+        );
+
+        $this->app->bind(
+            StokBarangRepositoryInterface::class,
+            StokBarangRepository::class
+        );
+
+        $this->app->bind(
+            PermintaanBarangRepositoryInterface::class,
+            PermintaanBarangRepository::class
+        );
+
+        $this->app->bind(
+            PermintaanReturRepositoryInterface::class,
+            PermintaanReturRepository::class
         );
     }
 }

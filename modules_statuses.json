@@ -1,4 +1,5 @@
 {
-    "Blog": false,
-    "GudangPusat": true
+    "GudangPusat": true,
+    "GudangCabang": true,
+    "Outlet": true
 }

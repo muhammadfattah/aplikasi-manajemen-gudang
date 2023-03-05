@@ -17,14 +17,6 @@ Route::prefix('gudang-pusat')->group(function () {
 
 Route::prefix('admin/gudang-pusat')->as('gudang-pusat-')->namespace('\Modules\GudangPusat\Http\Controllers\Admin')->middleware(['auth'])->group(function () { // phpcs:ignore
 
-    // Route::get('posts/trashed', 'PostController@trashed')->name('posts.trashed');
-    // Route::get('posts/{id}/restore', 'PostController@restore')->name('posts.restore');
-    // Route::resource('posts', 'PostController');
-
-    // Route::get('pages/trashed', 'PageController@trashed')->name('pages.trashed');
-    // Route::get('pages/{id}/restore', 'PageController@restore')->name('pages.restore');
-    // Route::resource('pages', 'PageController');
-
     Route::resource('supplier', 'SupplierController')->except('show');
     Route::get('supplier/{id}/restore', 'SupplierController@restore')->name('supplier.restore');
     Route::get('supplier/trashed', 'SupplierController@trashed')->name('supplier.trashed');
@@ -40,4 +32,16 @@ Route::prefix('admin/gudang-pusat')->as('gudang-pusat-')->namespace('\Modules\Gu
     Route::resource('outlet', 'OutletController')->except('show');
     Route::get('outlet/{id}/restore', 'OutletController@restore')->name('outlet.restore');
     Route::get('outlet/trashed', 'OutletController@trashed')->name('outlet.trashed');
+
+    Route::resource('stok-barang', 'StokBarangController')->except('show');
+    Route::get('stok-barang/{id}/restore', 'StokBarangController@restore')->name('stok-barang.restore');
+    Route::get('stok-barang/{id}/tambah-stok', 'StokBarangController@tambah_stok')->name('stok-barang.tambah-stok');
+    Route::put('stok-barang/update-stok/{id}', 'StokBarangController@update_stok')->name('stok-barang.update-stok');
+    Route::get('stok-barang/trashed', 'StokBarangController@trashed')->name('stok-barang.trashed');
+
+    Route::get('permintaan-order/{id}', 'PermintaanBarangController@update');
+    Route::resource('permintaan-order', 'PermintaanBarangController')->except(['show', 'create', 'store', 'edit', 'destroy', 'update']);
+
+    Route::get('permintaan-retur/{id}', 'PermintaanReturController@update');
+    Route::resource('permintaan-retur', 'PermintaanReturController')->except(['show', 'create', 'store', 'edit', 'destroy', 'update']);
 });
