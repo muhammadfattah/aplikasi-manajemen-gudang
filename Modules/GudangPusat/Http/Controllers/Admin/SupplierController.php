@@ -5,7 +5,6 @@ namespace Modules\GudangPusat\Http\Controllers\Admin;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
-use App\Authorizable;
 use Modules\GudangPusat\Http\Controllers\GudangPusatController;
 use Modules\GudangPusat\Http\Requests\Admin\SupplierRequest;
 use Modules\GudangPusat\Repositories\Admin\Interfaces\SupplierRepositoryInterface;
@@ -31,6 +30,7 @@ class SupplierController extends GudangPusatController
      */
     public function index(Request $request)
     {
+
         $params = $request->all();
 
         $options = [

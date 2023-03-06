@@ -53,7 +53,6 @@ class UserRepository implements UserRepositoryInterface
     public function create($params = [])
     {
         return DB::transaction(function () use ($params) {
-
             $params['password'] = Hash::make($params['password']);
 
             $user = User::create($params);

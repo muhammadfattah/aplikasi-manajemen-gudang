@@ -39,7 +39,7 @@
                                                 <td>@format_rupiah($stokbarang->harga)</td>
                                                 <td>{{ $stokbarang->stok->stok ?? 0 }}</td>
                                                 <td>{{ $stokbarang->updated_at_formatted }}</td>
-                                                <td>
+                                                <td class="text-nowrap">
                                                     @if ($stokbarang->trashed())
                                                         @can('delete_gudang_pusat-stok_barang')
                                                             <a class="btn btn-sm btn-warning"
